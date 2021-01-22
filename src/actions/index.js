@@ -1,5 +1,35 @@
 import axios from 'axios';
 
+
+export const getSmurf = () => {
+    return (dispatch) => {
+        dispatch ({ type: "GET_SMURF "})
+        axios
+        .get("http://localhost:3333/smurfs")
+        .then((res) => {
+            console.log(res.data)
+            dispatch({ type: "GET_SMURF_SUCCESS", payload: res.data})
+        })
+        .catch((err) => {
+            dispatch({ type: "GET_SMURF_ERROR", payload: err.message})
+        })
+    };
+};
+
+export const addSmurf = (data) => {
+    return (dispatch) => {
+        dispatch ({ type: "ADD_SMURF "})
+        axios
+        .post("http://localhost:3333/smurfs", data)
+        .then((res) => {
+            dispatch({ type: "ADD_SMURF_SUCCESS" , payload: res.data})
+        })
+        .catch((err) => {
+            dispatch({ type: "ADD_SMURF_ERROR" , payload: err.message})
+        })
+    };
+};
+
 //Task List:
 //1. Add fetch smurfs action: 
 //              - fetch and return initial list of smurfs
