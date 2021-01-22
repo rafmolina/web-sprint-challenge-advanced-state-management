@@ -1,31 +1,40 @@
 import axios from 'axios';
 
+export const GET_SMURF = 'GET_SMURF'
+export const GET_SMURF_SUCCESS = 'GET_SMURF_SUCCESS'
+export const GET_SMURF_ERROR = 'GET_SMURF_ERROR'
+
+
+export const ADD_SMURF = 'ADD_SMURF'
+export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS'
+export const ADD_SMURF_ERROR = "ADD_SMURF_ERROR"
+
 
 export const getSmurf = () => {
     return (dispatch) => {
-        dispatch ({ type: "GET_SMURF "})
+        dispatch ({ type: GET_SMURF})
         axios
         .get("http://localhost:3333/smurfs")
         .then((res) => {
             console.log(res.data)
-            dispatch({ type: "GET_SMURF_SUCCESS", payload: res.data})
+            dispatch({ type: GET_SMURF_SUCCESS, payload: res.data})
         })
         .catch((err) => {
-            dispatch({ type: "GET_SMURF_ERROR", payload: err.message})
+            dispatch({ type: GET_SMURF_ERROR, payload: err.message})
         })
     };
 };
 
 export const addSmurf = (data) => {
     return (dispatch) => {
-        dispatch ({ type: "ADD_SMURF "})
+        dispatch ({ type: ADD_SMURF})
         axios
         .post("http://localhost:3333/smurfs", data)
         .then((res) => {
-            dispatch({ type: "ADD_SMURF_SUCCESS" , payload: res.data})
+            dispatch({ type: ADD_SMURF_SUCCESS , payload: res.data})
         })
         .catch((err) => {
-            dispatch({ type: "ADD_SMURF_ERROR" , payload: err.message})
+            dispatch({ type: ADD_SMURF_ERROR , payload: err.message})
         })
     };
 };

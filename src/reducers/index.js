@@ -1,3 +1,4 @@
+import { GET_SMURF, GET_SMURF_SUCCESS, GET_SMURF_ERROR } from '../actions/index'
 
 export const initialState = {
     smurfs : [],
@@ -7,19 +8,19 @@ export const initialState = {
 
 const reducer = ( state = initialState , action ) => {
     switch(action.type) {
-        case "GET_SMURF":
+        case GET_SMURF:
             return {
                 ...state,
                 isFetching: true,
                 error:""
             }
-        case "GET_SMURF_SICCESS":
+        case GET_SMURF_SUCCESS:
             return {
                 ...state,
                 smurfs : action.payload,
                 isFetching: false,
             }
-        case "GET_SMURF_ERROR":
+        case GET_SMURF_ERROR:
             return {
                 ...state, 
                 isFetching: false,
