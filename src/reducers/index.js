@@ -1,8 +1,36 @@
+import { GET_SMURF, GET_SMURF_SUCCESS, GET_SMURF_ERROR } from '../actions/index'
 
 export const initialState = {
-}
+    smurfs : [],
+    isFetching: false,
+    error: ""
+};
 
-const reducer = ()=>{
+const reducer = ( state = initialState , action ) => {
+    switch(action.type) {
+        case GET_SMURF:
+            return {
+                ...state,
+                isFetching: true,
+                error:""
+            }
+        case GET_SMURF_SUCCESS:
+            return {
+                ...state,
+                smurfs : action.payload,
+                isFetching: false,
+            }
+        case GET_SMURF_ERROR:
+            return {
+                ...state, 
+                isFetching: false,
+                error : action.payload
+            }
+        
+        default :
+        return state
+    }
+
 }
 
 export default reducer;
